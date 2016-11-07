@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="NoN Ranking Algorithms : A family of ranking algorithms on a Network of Networks, including CR, CRstar and WCRstar.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>NoN Ranking Algorithms</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/nijingchao/CRstar">View on GitHub</a>
+
+          <h1 id="project_title">NoN Ranking Algorithms</h1>
+          <h2 id="project_tagline">A family of ranking algorithms on a Network of Networks, including CR, CRstar and WCRstar.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/nijingchao/CRstar/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/nijingchao/CRstar/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <p>For any questions about the source code and datasets, please contact <a href="http://nijingchao.github.io">Jingchao Ni</a> (<a href="mailto:jingchao.ni@case.edu">jingchao.ni@case.edu</a>), thanks.</p>
+
+<h1>
+<a id="publication" class="anchor" href="#publication" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Publication</h1>
+
+<ul>
+<li>
+<a href="http://nijingchao.github.io">Jingchao Ni</a>, Mehmet Koyuturk, Hanghang Tong, Jonathan Haines, Rong Xu and Xiang Zhang. "Disease gene prioritization by integrating tissue-specific molecular networks using a robust multi-network model". BMC Bioinformatics, 2017.</li>
+</ul>
+
+<h1>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h1>
+
+<ul>
+<li>All codes are tested using MATLAB R2013a.</li>
+</ul>
+
+<h1>
+<a id="datasets" class="anchor" href="#datasets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Datasets</h1>
+
+<ul>
+<li>P_G_NoSN_PPICenter.mat: the NoSN with tissue-specific PPI networks as the center networks.</li>
+<li>P_G_NoSN_GCNCenter.mat: the NoSN with either tissue-specific gene co-expression networks or tissue-specific PPI networks as the center networks.</li>
+<li>P_G_NoSN_PPICenter_2GCNs.mat: the NoSN with tissue-specific PPI networks as the center networks, and two sets of tissue-specific gene co-expression networks as the auxiliary networks.</li>
+</ul>
+
+<h3>
+<a id="details" class="anchor" href="#details" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Details</h3>
+
+<ul>
+<li>PhenotypeSimNet: the disease similarity network.</li>
+<li>PhenotypeID: the MIM IDs of diseases in the disease similarity network.</li>
+<li>TSGeneNets: the tissue-specific molecular networks corresponding to the diseases in the disease similarity network. Each disease corresponds to at least one tissue-specific molecular network.</li>
+<li>TSGeneNetsID: the corresponding Entrez IDs of genes in TSGeneNets.</li>
+<li>AllGeneID: the Entrez IDs of all genes in all tissue-specific molecular networks.</li>
+<li>Seeds: the known causal genes of diseases in each tissue-specific molecular network, corresponding to TSGeneNets.</li>
+<li>TissueDict: the dictionary of the names of the most associated tissues of the diseases in the disease similarity network.</li>
+</ul>
+
+<h1>
+<a id="algorithm-cr" class="anchor" href="#algorithm-cr" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithm CR</h1>
+
+<ul>
+<li>CR_CrossValidation.m: leave-one-out cross validation of CR.</li>
+<li>CR_Precomputation.m: the precomputation step of CR.</li>
+<li>CR: CR power method.</li>
+<li>J_CR.m: the objective function value of CrossRank.</li>
+<li>AUCEvaluation.m and AUCValue.m: AUC value evaluation with up to 50, 100, 300, 500, 700 and 1000 false positives.</li>
+</ul>
+
+<p>Run CR_CrossValidation.m to see the evaluation results of the leave-one-out cross validation of CR algorithm. CR only uses the center networks in the NoSN datasets.</p>
+
+<h1>
+<a id="algorithm-crstar" class="anchor" href="#algorithm-crstar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithm CRstar</h1>
+
+<ul>
+<li>CRstar_CrossValidation.m: leave-one-out cross validation of CRstar.</li>
+<li>CRstar_Precomputation.m: the precomputation step of CRstar.</li>
+<li>CRstar: CRstar power method.</li>
+<li>J_CRstar.m: the objective function value of CrossRankStar.</li>
+<li>AUCEvaluation.m and AUCValue.m: AUC value evaluation with up to 50, 100, 300, 500, 700 and 1000 false positives.</li>
+</ul>
+
+<p>Run CRstar_CrossValidation.m to see the evaluation results of the leave-one-out cross validation of CRstar algorithm.</p>
+
+<h1>
+<a id="algorithm-wcrstar" class="anchor" href="#algorithm-wcrstar" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Algorithm WCRstar</h1>
+
+<ul>
+<li>WCRstar_CrossValidation.m: leave-one-out cross validation of WCRstar.</li>
+<li>WCRstar_Precomputation.m: the precomputation step of WCRstar.</li>
+<li>WCRstar: WCRstar alternating minimization approach.</li>
+<li>J_WCRstar.m: the objective function value of Weighted CrossRankStar.</li>
+<li>J_aux.m: the center-auxiliary network inconsistency value of Weighted CrossRankStar.</li>
+<li>AUCEvaluation.m and AUCValue.m: AUC value evaluation with up to 50, 100, 300, 500, 700 and 1000 false positives.</li>
+</ul>
+
+<p>Run WCRstar_CrossValidation.m to see the evaluation results of the leave-one-out cross validation of WCRstar algorithm. WCRstar uses P_G_NoSN_PPICenter_2GCNs.mat dataset as default.</p>
+
+<h1>
+<a id="note" class="anchor" href="#note" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Note</h1>
+
+<ul>
+<li>CR, CRstar and WCRstar have precomputation steps, which may take some time. The precomputation steps only need to be computed once for a dataset. If a precomputation file exists for a dataset, CR, CRstar and WCRstar will detect it and start ranking directly.</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">NoN Ranking Algorithms maintained by <a href="https://github.com/nijingchao">nijingchao</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
